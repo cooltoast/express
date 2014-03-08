@@ -1,0 +1,9 @@
+.clickable:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.swappable:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}

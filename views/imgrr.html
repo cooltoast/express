@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Image 'n Heap</title>
+  </head>
+  <body>
+    <center><h1>IMAGE A NATION</h1></center>
+
+    <hr>
+
+    <div class="problem">
+      <h2 class="problem_title">Animals</h2>
+      <p>Edit the html in imgrr.html to put a picture of a gorilla here!</p>
+      <img id="main_img" src="/static/img/gorilla.jpg" height="300px">
+    </div>
+
+    <hr>
+
+    <div class="problem">
+      <h2 class="problem_title">Peekaboo</h2>
+      <p>Write some code in imgrr.js so that when you click the button
+      below, the image above disappears and the text of the
+      button changes to "Come Back!". Then, if you click the button again
+      make it so the image reappears and the button text changes back
+      to "Go Away!".</p>
+      <button id="toggle_img">Go Away!</button>
+    </div>
+
+    <hr>
+
+    <div class="problem">
+      <h2 class="problem_title">Swap Em</h2>
+      <p>Write code so that when you click the button below, the image changes
+      to the one you wrote in the box (ex. type giraffe.jpg into the box).</p>
+      <input type="text" id="new_img_file">
+      <button id="change_img">Swap It In</button>
+    </div>
+
+    <hr>
+
+    <div class="problem">
+      <h2 class="problem_title">Find the Source</h2>
+      <p>Edit the html to make the three thumbnails below a gorilla, a giraffe
+      and a red panda. Then write code so that when you click any of the images,
+      an alert pops up displaying the src of the image you clicked.</p>
+      <img class="clickable" src="/static/img/gorilla.jpg" width="100px" height="100px">
+      <img class="clickable" src="/static/img/giraffe.jpg" width="100px" height="100px">
+      <img class="clickable" src="/static/img/red_panda.jpg" width="100px" height="100px">
+    </div>
+
+    <hr>
+
+    <div class="problem">
+      <h2 class="problem_title">Imgrr</h2>
+      <p>In the space below, make a large main image and three smaller
+      thumbnails below it. Then make it so that when you click a thumbnail it
+      shows up as the large image. Use the previous parts to guide you!</p>
+      
+      <img id="big_img" src="/static/img/gorilla.jpg" height="300px">
+
+      <p></p>
+
+      <img class="swappable" src="/static/img/gorilla.jpg" width="100px" height="100px">
+      <img class="swappable" src="/static/img/giraffe.jpg" width="100px" height="100px">
+      <img class="swappable" src="/static/img/red_panda.jpg" width="100px" height="100px">
+
+    </div>
+
+    <a href="/">Back</a>
+
+    <!-- Now load all the javascript and css code -->
+    <script src="/static/js/jquery-1.10.2.js" type="text/javascript"></script>
+    <script src="/static/js/imgrr.js" type="text/javascript"></script>
+    <link href="/static/css/imgrr.css" rel="stylesheet" type="text/css">
+  </body>
+</html>
