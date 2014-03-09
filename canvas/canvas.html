@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Draw some stuff</title>
+  </head>
+  <body>
+    <div style="float: left; width: 300px;">
+      <ul>
+        <h3>1. Shapes</h3>
+        <li>Rectangle
+          <br/>
+          <button id="p1">Draw</button>
+        </li>
+        <li>Square
+          </br>
+          <button id="p2">Draw</button>
+        </li>
+        <li>Arc
+          </br>
+          <button id="p3">Draw</button>
+        </li>
+        <li>Circle
+          </br>
+          <button id="p4">Draw</button>
+        </li>
+        <li>Line
+          </br>
+          <button id="p5">Draw</button>
+        </li>
+      <h3>2. Colors</h3>
+      <li>Green rectangle
+        </br>
+        <button id="p6">Draw</button>
+      </li>
+      <li>Solid red circle
+        </br>
+        <button id="p7">Draw</button>
+      </li>
+      <li>Solid yellow square with a blue outline
+        </br>
+        <button id="p8">Draw</button>
+      </li>
+      <h3>3. Lots of Shapes</h3>
+      <li>5 50x50 squares touching each other in a row
+        </br>
+        <button id="p9">Draw</button>
+      </li>
+      <li>100 5x5 squares touching each other in a row
+        </br>
+        <button id="p10">Draw</button>
+      </li>
+      <h3>4. Challenges</h3>
+      <li>10000 5x5 squares touching each other (this should turn the entire canvas into a grid)
+        </br>
+        <button id="p11">Draw</button>
+      </li>
+      <li>20 concentric circles
+        </br>
+        <button id="p12">Draw</button>
+      </li>
+    </div>
+
+    <!-- This is the canvas element where everything is drawn -->
+    <canvas id="canvas" width="500" height="500" style="border: 1px dotted black"></canvas>
+    <button id="clear">Clear</button>
+
+    <a href="/">Back</a>
+
+    <!-- Now load all the javascript and css code -->
+    <script src="/static/js/jquery-1.10.2.js" type="text/javascript"></script>
+    <script src="/static/js/canvas.js" type="text/javascript"></script>
+  </body>
+</html>
