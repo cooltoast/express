@@ -128,8 +128,7 @@ $(function() {
   $('#sqrt').click(function() {
     var outputText = $('#output').text();
     var outputNum = parseFloat(eval(outputText));
-    var newNum = Math.sqrt(outputNum);
-    $('#output').text(newNum);
+    $('#output').text(Math.sqrt(outputNum));
   });
 
   $('#square').click(function() {
