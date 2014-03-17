@@ -16,7 +16,7 @@ See the webapp at
 
 http://127.0.0.1:5000/
 
-Deoply to Heroku
+Deploy to Heroku
 
 ```
 heroku create
