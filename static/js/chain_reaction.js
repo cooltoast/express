@@ -5,7 +5,7 @@ $(document).ready(function() {
   var width = canvas.width;
   var height = canvas.height;
 
-  var numBalls = 5;
+  var numBalls = 40;
 
   var balls = [];
 
@@ -23,7 +23,7 @@ $(document).ready(function() {
       y: height * Math.random(), //keeps track of y position
       vx: modifier * 10 * Math.random(), //keeps track of x velocity
       vy: modifier * 10 * Math.random(), //keeps track of y velocity
-      color: colors[Math.floor((Math.random()*7))]
+      color: colors[Math.floor((Math.random()*colors.length))]
     };
 
     balls.push(b);
