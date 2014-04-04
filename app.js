@@ -46,6 +46,10 @@ app.get('/ball', function(req, res) {
   res.render('ball.html', { });
 });
 
+app.get('/chain-reaction', function(req, res) {
+  res.render('chain_reaction.html', { });
+});
+
 ///////////////////////////////////////////////////////////////////////////////
 // RUN CONFIGURATION                                                         //
 ///////////////////////////////////////////////////////////////////////////////
