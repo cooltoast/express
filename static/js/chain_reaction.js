@@ -5,36 +5,29 @@ $(document).ready(function() {
   var width = canvas.width;
   var height = canvas.height;
 
+  var numBalls = 5;
+
   var balls = [];
 
-  var b0 = {
-    radius: 20,
-    x: 20, //keeps track of x position
-    y: 20, //keeps track of y position
-    vx: 5, //keeps track of x velocity
-    vy: 5 //keeps track of y velocity
-  };
+  var modifier = 1;
 
-  var b1 = {
-    radius: 10,
-    x: width - 10, //keeps track of x position
-    y: height - 10, //keeps track of y position
-    vx: -5, //keeps track of x velocity
-    vy: -5 //keeps track of y velocity
-  };
+  var colors = ["black", "red", "blue", "green", "pink", "orange", "purple"];
 
-  var b2 = {
-    radius: 50,
-    x: width - 50, //keeps track of x position
-    y: 50, //keeps track of y position
-    vx: -5, //keeps track of x velocity
-    vy: 5 //keeps track of y velocity
-  };
+  for (var i = 0; i < numBalls; i++)
+  {
+    modifier = -modifier;      
 
-  balls.push(b0);
-  balls.push(b1);
-  balls.push(b2);
+    var b = {
+      radius: 20 * Math.random(),
+      x: width * Math.random(), //keeps track of x position
+      y: height * Math.random(), //keeps track of y position
+      vx: modifier * 10 * Math.random(), //keeps track of x velocity
+      vy: modifier * 10 * Math.random(), //keeps track of y velocity
+      color: colors[Math.floor((Math.random()*7))]
+    };
 
+    balls.push(b);
+  }
 
   var clearScreen = function() {
     context.fillStyle = 'white';
@@ -46,23 +39,27 @@ $(document).ready(function() {
 
     clearScreen();
 
-    context.fillStyle = 'black';
+    
 
     for (var i = 0; i < balls.length; i++)
     {
-      balls[i].x = balls[i].x + balls[i].vx;
-      balls[i].y = balls[i].y + balls[i].vy;
-
-      if((balls[i].x == width - balls[i].radius) || (balls[i].x == balls[i].radius))
+      if((balls[i].x >= width - balls[i].radius) || (balls[i].x <= balls[i].radius))
       {
         balls[i].vx = -balls[i].vx;
       }
 
-      if((balls[i].y == height - balls[i].radius) || (balls[i].y == balls[i].radius))
+      if((balls[i].y >= height - balls[i].radius) || (balls[i].y <= balls[i].radius))
       {
         balls[i].vy = -balls[i].vy;
       }
+
+      balls[i].x = balls[i].x + balls[i].vx;
+      balls[i].y = balls[i].y + balls[i].vy;
+
+      context.fillStyle = balls[i].color;
     
+      
+
       context.beginPath();
       context.arc(balls[i].x, balls[i].y, balls[i].radius, 0, 2*Math.PI);
       context.closePath();
@@ -71,8 +68,7 @@ $(document).ready(function() {
     }
 
     
-
-    setTimeout(updateGame, 10);
+    requestAnimationFrame(updateGame);
   };
 
   // Handle a canvas click event
@@ -81,6 +77,20 @@ $(document).ready(function() {
     var x = e.pageX - $(this).offset().left;
     var y = e.pageY - $(this).offset().top;
     // PUT STUFF HERE
+
+    modifier = -modifier;
+
+    var b_click = {
+      radius: 20 * Math.random(),
+      x: x, //keeps track of x position
+      y: y, //keeps track of y position
+      vx: modifier * 10 * Math.random(), //keeps track of x velocity
+      vy: modifier * 10 * Math.random(), //keeps track of y velocity
+      color: colors[Math.floor((Math.random()*7))]
+    };
+
+    balls.push(b_click);
+
   });
 
   updateGame();
