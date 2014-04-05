@@ -5,7 +5,7 @@ $(document).ready(function() {
   var width = canvas.width;
   var height = canvas.height;
 
-  var numBalls = 40;
+  var numBalls = 50;
 
   var balls = [];
 
@@ -90,7 +90,18 @@ $(document).ready(function() {
     };
 
     balls.push(b_click);
+/*
+    for (var i = 0; i < balls.length; i++)
+    {
+      var ball_surrounding = Math.sqrt((x - balls[i].x)^2 + (y - balls[i].y)^2);
 
+      if (ball_surrounding <= balls[i].radius)
+      {
+        balls.splice(i, 1);
+      }
+
+    }
+*/
   });
 
   updateGame();
