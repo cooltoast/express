@@ -85,14 +85,17 @@ $(document).ready(function() {
       reactions[i].y = reactions[i].y + reactions[i].vy;
 
       context.fillStyle = reactions[i].color;
-    
-      
 
       context.beginPath();
       context.arc(reactions[i].x, reactions[i].y, reactions[i].radius, 0, 2*Math.PI);
       context.closePath();
       context.stroke();
       context.fill();
+
+      if (reactions[i].radius < 30)
+      {
+        reactions[i].radius = reactions[i].radius + 1;
+      }
     }
     
     requestAnimationFrame(updateGame);
@@ -108,7 +111,7 @@ $(document).ready(function() {
     modifier = -modifier;
 
     var b_click = {
-      radius: 30,
+      radius: 1,
       x: x, //keeps track of x position
       y: y, //keeps track of y position
       //vx: modifier * 10 * Math.random(), //keeps track of x velocity
