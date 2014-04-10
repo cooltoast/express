@@ -5,6 +5,8 @@ $(document).ready(function() {
   var width = canvas.width;
   var height = canvas.height;
 
+  var reactions = [];
+
   var numBalls = 50;
 
   var balls = [];
@@ -67,6 +69,31 @@ $(document).ready(function() {
       context.fill();
     }
 
+    for (var i = 0; i < reactions.length; i++)
+    {
+      if((reactions[i].x >= width - reactions[i].radius) || (reactions[i].x <= reactions[i].radius))
+      {
+        reactions[i].vx = -reactions[i].vx;
+      }
+
+      if((reactions[i].y >= height - reactions[i].radius) || (reactions[i].y <= reactions[i].radius))
+      {
+        reactions[i].vy = -reactions[i].vy;
+      }
+
+      reactions[i].x = reactions[i].x + reactions[i].vx;
+      reactions[i].y = reactions[i].y + reactions[i].vy;
+
+      context.fillStyle = reactions[i].color;
+    
+      
+
+      context.beginPath();
+      context.arc(reactions[i].x, reactions[i].y, reactions[i].radius, 0, 2*Math.PI);
+      context.closePath();
+      context.stroke();
+      context.fill();
+    }
     
     requestAnimationFrame(updateGame);
   };
@@ -81,17 +108,19 @@ $(document).ready(function() {
     modifier = -modifier;
 
     var b_click = {
-      radius: 20 * Math.random(),
+      radius: 30,
       x: x, //keeps track of x position
       y: y, //keeps track of y position
-      vx: modifier * 10 * Math.random(), //keeps track of x velocity
-      vy: modifier * 10 * Math.random(), //keeps track of y velocity
+      //vx: modifier * 10 * Math.random(), //keeps track of x velocity
+      //vy: modifier * 10 * Math.random(), //keeps track of y velocity
+      vx: 0,
+      vy: 0,
       color: colors[Math.floor((Math.random()*7))]
     };
 
-    balls.push(b_click);
+    reactions.push(b_click);
 /*
-    for (var i = 0; i < balls.length; i++)
+    for (var i = 0; i < reactions.length; i++)
     {
       var ball_surrounding = Math.sqrt((x - balls[i].x)^2 + (y - balls[i].y)^2);
 
