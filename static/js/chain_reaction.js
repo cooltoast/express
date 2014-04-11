@@ -19,8 +19,19 @@ $(document).ready(function() {
   {
     modifier = -modifier;      
 
+    /*
     var b = {
       radius: 20 * Math.random(),
+      x: width * Math.random(), //keeps track of x position
+      y: height * Math.random(), //keeps track of y position
+      vx: modifier * 10 * Math.random(), //keeps track of x velocity
+      vy: modifier * 10 * Math.random(), //keeps track of y velocity
+      color: colors[Math.floor((Math.random()*colors.length))]
+    };
+    */
+
+    var b = {
+      radius: 10,
       x: width * Math.random(), //keeps track of x position
       y: height * Math.random(), //keeps track of y position
       vx: modifier * 10 * Math.random(), //keeps track of x velocity
@@ -40,8 +51,6 @@ $(document).ready(function() {
   var updateGame = function() {
 
     clearScreen();
-
-    
 
     for (var i = 0; i < balls.length; i++)
     {
@@ -67,6 +76,7 @@ $(document).ready(function() {
       context.closePath();
       context.stroke();
       context.fill();
+    
     }
 
     for (var i = 0; i < reactions.length; i++)
@@ -98,6 +108,24 @@ $(document).ready(function() {
       }
     }
     
+    
+    for (var i = 0; i < balls.length; i++)
+    {
+      for (var j = 0; j < reactions.length; j++) 
+      {
+        var xdiff = (reactions[j].x - balls[i].x);
+        var ydiff = (reactions[j].y - balls[i].y);
+        var dist = Math.sqrt(xdiff * xdiff + ydiff * ydiff);
+        
+        if (dist <= (reactions[j].radius + balls[i].radius))
+        {
+          alert('BOOM');
+        }
+      }
+    }
+
+    
+
     requestAnimationFrame(updateGame);
   };
 
@@ -122,18 +150,7 @@ $(document).ready(function() {
     };
 
     reactions.push(b_click);
-/*
-    for (var i = 0; i < reactions.length; i++)
-    {
-      var ball_surrounding = Math.sqrt((x - balls[i].x)^2 + (y - balls[i].y)^2);
 
-      if (ball_surrounding <= balls[i].radius)
-      {
-        balls.splice(i, 1);
-      }
-
-    }
-*/
   });
 
   updateGame();
