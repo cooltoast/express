@@ -19,17 +19,6 @@ $(document).ready(function() {
   {
     modifier = -modifier;      
 
-    /*
-    var b = {
-      radius: 20 * Math.random(),
-      x: width * Math.random(), //keeps track of x position
-      y: height * Math.random(), //keeps track of y position
-      vx: modifier * 10 * Math.random(), //keeps track of x velocity
-      vy: modifier * 10 * Math.random(), //keeps track of y velocity
-      color: colors[Math.floor((Math.random()*colors.length))]
-    };
-    */
-
     var b = {
       radius: 10,
       x: width * Math.random(), //keeps track of x position
@@ -117,10 +106,30 @@ $(document).ready(function() {
         var ydiff = (reactions[j].y - balls[i].y);
         var dist = Math.sqrt(xdiff * xdiff + ydiff * ydiff);
         
+        //if collision, make new reaction object and add to array
         if (dist <= (reactions[j].radius + balls[i].radius))
         {
-          alert('BOOM');
+          var new_reaction = {
+            radius: 10,
+            x: balls[i].x, //keeps track of x position
+            y: balls[i].y, //keeps track of y position
+            vx: 0, //keeps track of x velocity
+            vy: 0, //keeps track of y velocity
+            color: balls[i].color
+          };
+
+          reactions.push(new_reaction);
+
+         
+          balls.splice(i, 1);
+
+          if (i >= 1)
+          {
+            i--;
+          }
+          
         }
+
       }
     }
 
@@ -142,8 +151,6 @@ $(document).ready(function() {
       radius: 1,
       x: x, //keeps track of x position
       y: y, //keeps track of y position
-      //vx: modifier * 10 * Math.random(), //keeps track of x velocity
-      //vy: modifier * 10 * Math.random(), //keeps track of y velocity
       vx: 0,
       vy: 0,
       color: colors[Math.floor((Math.random()*7))]
