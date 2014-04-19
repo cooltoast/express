@@ -70,6 +70,8 @@ $(document).ready(function() {
 
     for (var i = 0; i < reactions.length; i++)
     {
+      reactions[i].timer = reactions[i].timer + 1;
+      
       if((reactions[i].x >= width - reactions[i].radius) || (reactions[i].x <= reactions[i].radius))
       {
         reactions[i].vx = -reactions[i].vx;
@@ -91,9 +93,19 @@ $(document).ready(function() {
       context.stroke();
       context.fill();
 
-      if (reactions[i].radius < 30)
+      if (reactions[i].timer > 200)
+      {
+        reactions[i].radius = reactions[i].radius - 1;
+      }
+
+      else if (reactions[i].radius < 30)
       {
         reactions[i].radius = reactions[i].radius + 1;
+      }
+
+      if (reactions[i].radius == 0)
+      {
+        reactions.splice(i, 1);
       }
     }
     
@@ -115,7 +127,8 @@ $(document).ready(function() {
             y: balls[i].y, //keeps track of y position
             vx: 0, //keeps track of x velocity
             vy: 0, //keeps track of y velocity
-            color: balls[i].color
+            color: balls[i].color,
+            timer: 0
           };
 
           reactions.push(new_reaction);
@@ -147,16 +160,17 @@ $(document).ready(function() {
 
     modifier = -modifier;
 
-    var b_click = {
+    var new_reaction = {
       radius: 1,
       x: x, //keeps track of x position
       y: y, //keeps track of y position
       vx: 0,
       vy: 0,
-      color: colors[Math.floor((Math.random()*7))]
+      color: colors[Math.floor((Math.random()*7))],
+      timer: 0
     };
 
-    reactions.push(b_click);
+    reactions.push(new_reaction);
 
   });
 
