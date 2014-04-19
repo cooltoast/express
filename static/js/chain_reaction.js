@@ -5,6 +5,10 @@ $(document).ready(function() {
   var width = canvas.width;
   var height = canvas.height;
 
+  var reacting = false;
+
+  var numReacted = 0;
+
   var reactions = [];
 
   var numBalls = 50;
@@ -133,6 +137,7 @@ $(document).ready(function() {
 
           reactions.push(new_reaction);
 
+          numReacted = numReacted + 1;
          
           balls.splice(i, 1);
 
@@ -146,32 +151,41 @@ $(document).ready(function() {
       }
     }
 
-    
+    context.fillStyle = "black";
+
+    context.font = "20px Arial";
+
+    context.fillText("Reactions: " + numReacted, width/2 - 50, height/2 );
 
     requestAnimationFrame(updateGame);
   };
 
   // Handle a canvas click event
   $('#game_canvas').click(function(e) {
-    // Find the mouse x and y relative to the top-left corner of the canvas
-    var x = e.pageX - $(this).offset().left;
-    var y = e.pageY - $(this).offset().top;
-    // PUT STUFF HERE
 
-    modifier = -modifier;
+    if(!reacting)
+    {
+      // Find the mouse x and y relative to the top-left corner of the canvas
+      var x = e.pageX - $(this).offset().left;
+      var y = e.pageY - $(this).offset().top;
+      // PUT STUFF HERE
 
-    var new_reaction = {
-      radius: 1,
-      x: x, //keeps track of x position
-      y: y, //keeps track of y position
-      vx: 0,
-      vy: 0,
-      color: colors[Math.floor((Math.random()*7))],
-      timer: 0
-    };
+      modifier = -modifier;
 
-    reactions.push(new_reaction);
+      var new_reaction = {
+        radius: 1,
+        x: x, //keeps track of x position
+        y: y, //keeps track of y position
+        vx: 0,
+        vy: 0,
+        color: colors[Math.floor((Math.random()*7))],
+        timer: 0
+      };
 
+      reacting = true;
+
+      reactions.push(new_reaction);
+    }
   });
 
   updateGame();
