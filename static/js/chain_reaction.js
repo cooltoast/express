@@ -11,7 +11,7 @@ $(document).ready(function() {
 
   var reactions = [];
 
-  var numBalls = 50;
+  var numBalls = 100;
 
   var balls = [];
 
