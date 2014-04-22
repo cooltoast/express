@@ -9,21 +9,38 @@ $(document).ready(function() {
 
   var menuText = "CLICK TO PLAY";
 
+  var curLevel = 0;
+
+  var levelText = "Level 1 - React 1 out of 5 balls";
+
   var reacting = false;
 
   var numReacted = 0;
 
   var reactions = [];
 
-  var numBalls = 100;
+  //var numBalls = 100;
 
   var balls = [];
+
+  var levels = [];
 
   var modifier = 1;
 
   var colors = ["black", "red", "blue", "green", "pink", "orange", "purple"];
 
-  for (var i = 0; i < numBalls; i++)
+  for (var i = 0; i < 9; i++)
+  {
+    var level = {
+      num: i,
+      minReactions: (5 * i) + 5,
+      numBalls: (10 * i) + 10
+    };
+
+    levels.push(level);
+  }
+
+  for (var i = 0; i < levels[curLevel].numBalls; i++)
   {
     modifier = -modifier;      
 
@@ -38,6 +55,9 @@ $(document).ready(function() {
 
     balls.push(b);
   }
+
+  
+
 
   var clearScreen = function() {
     context.fillStyle = 'white';
@@ -172,7 +192,9 @@ $(document).ready(function() {
 
       context.font = "20px Arial";
 
-      context.fillText("Reactions: " + numReacted, width/2 - 50, height/2);
+      context.fillText(levelText, width/2 - 125, height/2 - 25);
+
+      context.fillText("Reactions: " + numReacted, width/2 - 50, height/2 + 25);
 
       if (reacting && reactions.length == 0)
       {
@@ -190,12 +212,14 @@ $(document).ready(function() {
 
     if (gameState == "menu")
     {
+      levelText = "Level " + (levels[curLevel].num + 1) + " - React " + levels[curLevel].minReactions + " out of " + levels[curLevel].numBalls + " balls";
+
       gameState = "playing";
 
       reacting = false;
       numReacted = 0;
 
-      for (var i = 0; i < numBalls; i++)
+      for (var i = 0; i < levels[curLevel].numBalls; i++)
       {
         modifier = -modifier;      
 
