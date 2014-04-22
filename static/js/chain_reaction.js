@@ -201,6 +201,11 @@ $(document).ready(function() {
         menuText = "Game over!";
         gameState = "menu";
 
+
+        if (numReacted >= [curLevel].minReactions)
+        {
+          context.fillText("You win!", width/2, height/2 + 25);
+        }
       }
     }
       
