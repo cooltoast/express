@@ -198,14 +198,39 @@ $(document).ready(function() {
 
       if (reacting && reactions.length == 0)
       {
-        menuText = "Game over!";
+        
+        if (numReacted >= levels[curLevel].minReactions && curLevel < 9)
+        {
+          menuText = "You win! Click again.";
+          curLevel = curLevel + 1;
+        }
+
+        else
+        {
+          menuText = "Game over!";
+          curLevel = 0;
+
+          for (var i = 0; i < levels[curLevel].numBalls; i++)
+          {
+            modifier = -modifier;      
+
+            var b = {
+              radius: 10,
+              x: (width - 20) * Math.random() + 10, //keeps track of x position
+              y: (height - 20) * Math.random() + 10, //keeps track of y position
+              vx: modifier * 10 * Math.random(), //keeps track of x velocity
+              vy: modifier * 10 * Math.random(), //keeps track of y velocity
+              color: colors[Math.floor((Math.random()*colors.length))]
+            };
+
+            balls.push(b);
+          }
+        }
+        
         gameState = "menu";
 
 
-        if (numReacted >= [curLevel].minReactions)
-        {
-          context.fillText("You win!", width/2, height/2 + 25);
-        }
+        
       }
     }
       
@@ -224,25 +249,28 @@ $(document).ready(function() {
       reacting = false;
       numReacted = 0;
 
-      for (var i = 0; i < levels[curLevel].numBalls; i++)
+      if (curLevel > 0)
       {
-        modifier = -modifier;      
+        for (var i = 0; i < levels[curLevel].numBalls; i++)
+        {
+          modifier = -modifier;      
 
-        var b = {
-          radius: 10,
-          x: (width - 20) * Math.random() + 10, //keeps track of x position
-          y: (height - 20) * Math.random() + 10, //keeps track of y position
-          vx: modifier * 10 * Math.random(), //keeps track of x velocity
-          vy: modifier * 10 * Math.random(), //keeps track of y velocity
-          color: colors[Math.floor((Math.random()*colors.length))]
-        };
+          var b = {
+            radius: 10,
+            x: (width - 20) * Math.random() + 10, //keeps track of x position
+            y: (height - 20) * Math.random() + 10, //keeps track of y position
+            vx: modifier * 10 * Math.random(), //keeps track of x velocity
+            vy: modifier * 10 * Math.random(), //keeps track of y velocity
+            color: colors[Math.floor((Math.random()*colors.length))]
+          };
 
-        balls.push(b);
+          balls.push(b);
+        }
       }
 
     }
 
-    if(gameState == "playing" && !reacting)
+    else if (gameState == "playing" && !reacting)
     {
       // Find the mouse x and y relative to the top-left corner of the canvas
       var x = e.pageX - $(this).offset().left;
