@@ -157,39 +157,38 @@ $(document).ready(function() {
       {
         for (var j = 0; j < reactions.length; j++) 
         {
-          var xdiff = (reactions[j].x - balls[i].x);
-          var ydiff = (reactions[j].y - balls[i].y);
-          var dist = Math.sqrt(xdiff * xdiff + ydiff * ydiff);
-          
-          //if collision, make new reaction object and add to array
-          if (dist <= (reactions[j].radius + balls[i].radius))
-          {
-            var new_reaction = {
-              radius: 10,
-              x: balls[i].x, //keeps track of x position
-              y: balls[i].y, //keeps track of y position
-              vx: 0, //keeps track of x velocity
-              vy: 0, //keeps track of y velocity
-              color: balls[i].color,
-              timer: 0
-            };
-
-            reactions.push(new_reaction);
-
-            numReacted = numReacted + 1;
-
-            balls.splice(i, 1);
-
-            if (i >= 1)
-            {
-              i--;
-            }
+          if (balls.length > 0)
+          {  
+            var xdiff = (reactions[j].x - balls[i].x);
+            var ydiff = (reactions[j].y - balls[i].y);
+            var dist = Math.sqrt(xdiff * xdiff + ydiff * ydiff);
             
-            alert("yo1");
-            alert(i);
-            alert(balls.length);
-          }
+            //if collision, make new reaction object and add to array
+            if (dist <= (reactions[j].radius + balls[i].radius))
+            {
+              var new_reaction = {
+                radius: 10,
+                x: balls[i].x, //keeps track of x position
+                y: balls[i].y, //keeps track of y position
+                vx: 0, //keeps track of x velocity
+                vy: 0, //keeps track of y velocity
+                color: balls[i].color,
+                timer: 0
+              };
 
+              reactions.push(new_reaction);
+
+              numReacted = numReacted + 1;
+
+              balls.splice(i, 1);
+
+              if (i >= 1)
+              {
+                i--;
+              }
+              
+            }
+          }
         }
       }
       
