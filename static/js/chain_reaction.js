@@ -34,8 +34,8 @@ $(document).ready(function() {
   {
     var level = {
       num: i,
-      minReactions: i+1,//(5 * i) + 5,
-      numBalls: i+1//(10 * i) + 10
+      minReactions: (5 * i) + 5,
+      numBalls: (10 * i) + 10
     };
 
     levels.push(level);
