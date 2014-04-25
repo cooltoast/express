@@ -50,6 +50,10 @@ app.get('/chain-reaction', function(req, res) {
   res.render('chain_reaction.html', { });
 });
 
+app.get('/fact', function(req, res) {
+  res.render('fact.html', { fact: "Hellooo" });
+});
+
 ///////////////////////////////////////////////////////////////////////////////
 // RUN CONFIGURATION                                                         //
 ///////////////////////////////////////////////////////////////////////////////
