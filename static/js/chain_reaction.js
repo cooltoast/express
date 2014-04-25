@@ -29,17 +29,19 @@ $(document).ready(function() {
 
   var colors = ["black", "red", "blue", "green", "pink", "orange", "purple"];
 
+  //create levels
   for (var i = 0; i < 9; i++)
   {
     var level = {
       num: i,
-      minReactions: (5 * i) + 5,
-      numBalls: (10 * i) + 10
+      minReactions: i+1,//(5 * i) + 5,
+      numBalls: i+1//(10 * i) + 10
     };
 
     levels.push(level);
   }
 
+  //create balls 
   for (var i = 0; i < levels[curLevel].numBalls; i++)
   {
     modifier = -modifier;      
@@ -150,7 +152,7 @@ $(document).ready(function() {
         }
       }
       
-      
+      //check for collisions
       for (var i = 0; i < balls.length; i++)
       {
         for (var j = 0; j < reactions.length; j++) 
@@ -175,7 +177,7 @@ $(document).ready(function() {
             reactions.push(new_reaction);
 
             numReacted = numReacted + 1;
-           
+
             balls.splice(i, 1);
 
             if (i >= 1)
@@ -183,10 +185,14 @@ $(document).ready(function() {
               i--;
             }
             
+            alert("yo1");
+            alert(i);
+            alert(balls.length);
           }
 
         }
       }
+      
 
       context.fillStyle = "black";
 
