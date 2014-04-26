@@ -14,7 +14,7 @@ app.use('/static', express.static(__dirname + '/static'));
 //use ejs for html templates
 app.engine('html', ejs.renderFile);
 
-var facts = ["hello1", "hello2", "hello3"];
+var facts = ["The 57 on Heinz ketchup bottles represents the number of varieties of pickles the company once had.", "The most money ever paid for a cow in an auction was $1.3 million.", "The highest point in Pennsylvania is lower than the lowest point in Colorado.", "The average person spends about 2 years on the phone in a lifetime."];
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -53,15 +53,14 @@ app.get('/chain-reaction', function(req, res) {
   res.render('chain_reaction.html', { });
 });
 
-/*
 app.get('/fact', function(req, res) {
-  res.render('fact.html', { fact: "Hellooo" });
+  res.render('fact.html', { fact: facts[Math.floor(Math.random() * facts.length)] });
 });
-*/
 
-app.get('/fact', function(req, res) {
-  res.render('fact.html', { fact: facts[Math.floor(Math.random() * 3)] });
+app.get('/facts', function(req, res) {
+  res.render('facts.html', { facts: facts });
 });
+
 
 ///////////////////////////////////////////////////////////////////////////////
 // RUN CONFIGURATION                                                         //
