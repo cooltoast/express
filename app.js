@@ -3,6 +3,7 @@ var ejs = require("ejs");
 var app = express();
 
 
+
 ///////////////////////////////////////////////////////////////////////////////
 // APP CONFIGURATION                                                         //
 ///////////////////////////////////////////////////////////////////////////////
@@ -12,6 +13,8 @@ app.use(express.logger());
 app.use('/static', express.static(__dirname + '/static'));
 //use ejs for html templates
 app.engine('html', ejs.renderFile);
+
+var facts = ["hello1", "hello2", "hello3"];
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -50,8 +53,14 @@ app.get('/chain-reaction', function(req, res) {
   res.render('chain_reaction.html', { });
 });
 
+/*
 app.get('/fact', function(req, res) {
   res.render('fact.html', { fact: "Hellooo" });
+});
+*/
+
+app.get('/fact', function(req, res) {
+  res.render('fact.html', { fact: facts[Math.floor(Math.random() * 3)] });
 });
 
 ///////////////////////////////////////////////////////////////////////////////
