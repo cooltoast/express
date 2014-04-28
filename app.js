@@ -57,9 +57,17 @@ app.get('/fact', function(req, res) {
   res.render('fact.html', { fact: facts[Math.floor(Math.random() * facts.length)] });
 });
 
+app.get('/submit_fact', function(req, res) {
+  var fact = req.query['fact'];
+  facts.push(fact);
+  res.redirect('/facts');
+});
+
 app.get('/facts', function(req, res) {
   res.render('facts.html', { facts: facts });
 });
+
+
 
 
 ///////////////////////////////////////////////////////////////////////////////
