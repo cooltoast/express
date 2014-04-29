@@ -19,8 +19,6 @@ $(document).ready(function() {
 
   var reactions = [];
 
-  //var numBalls = 100;
-
   var balls = [];
 
   var levels = [];
@@ -201,6 +199,7 @@ $(document).ready(function() {
 
       context.fillText("Reactions: " + numReacted, width/2 - 50, height/2 + 25);
 
+      //check for a win
       if (reacting && reactions.length == 0)
       {
         
