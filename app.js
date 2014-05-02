@@ -71,8 +71,11 @@ app.get('/random_fact', function(req, res) {
 
 app.get('/submit_fact', function(req, res) {
   var fact = req.query['fact'];
-  facts.push(fact);
-  res.redirect('/facts');
+  db.run('INSERT INTO fact_table VALUES ("' + fact + '")');
+  
+  //facts.push(fact);
+  res.redirect('/fact');
+  
 });
 
 app.get('/facts', function(req, res) {
