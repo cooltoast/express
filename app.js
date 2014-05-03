@@ -79,7 +79,18 @@ app.get('/submit_fact', function(req, res) {
 });
 
 app.get('/facts', function(req, res) {
-  res.render('facts.html', { facts: facts });
+  
+  
+  db.all('SELECT * FROM fact_table', function(err, items) {
+    // render page here
+    var fact_array = [];
+    for (var i = 0; i < items.length; i++)
+    {
+     fact_array.push(items[i].fact_str);
+    }
+    res.render('facts.html', { facts: fact_array });
+  });
+
 });
 
 
